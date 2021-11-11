@@ -3,9 +3,16 @@ require './lib/potluck'
 
 dish = Dish.new("Couscous salad", :appetizer)
 dish_2 = Dish.new("Meatballs", :entree)
+dish_3 = Dish.new("Summer Pizza", :appetizer)
+dish_4 = Dish.new("Roast Pork", :entree)
+dish_5 = Dish.new("Candy Salad", :dessert)
+
 potluck = Potluck.new("7-13-18")
 potluck.add_dish(dish)
 potluck.add_dish(dish_2)
+potluck.add_dish(dish_3)
+potluck.add_dish(dish_4)
+potluck.add_dish(dish_5)
 
 
 RSpec.describe Dish do
@@ -19,8 +26,6 @@ RSpec.describe Dish do
   it 'has category' do
     expect(dish.category).to eq(:appetizer)
   end
-
-
 
 end
 
@@ -37,11 +42,24 @@ RSpec.describe Potluck do
     expect(potluck.dishes).to be_instance_of(Array)
   end
 
-  it 'has 2 dishes' do
-    expect(potluck.dishes.length).to eq(2)
+  it 'has 5 dishes' do
+    expect(potluck.dishes.length).to eq(5)
   end
+
+  it 'has 2 appetizers' do
+    expect(potluck.get_all_from_category(:appetizer).length).to eq(2)
+  end
+
+  it 'has first appetizer as Couscous salad' do
+    expect(potluck.get_all_from_category(:appetizer).first.name).to eq("Couscous salad")
+  end
+
+  it 'has a menu' do
+    expect(potluck.menu).to be_instance_of(Array)
+  end
+
 end
 
 
 
-# require 'pry'; binding.pry;
+  # require 'pry'; binding.pry;
